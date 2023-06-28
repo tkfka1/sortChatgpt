@@ -1,4 +1,4 @@
-
+import csv
 #Question at column
 A = []
 #Type at column
@@ -61,7 +61,6 @@ with open('q.txt', 'r', encoding='utf-8') as file:
             else:
                 C[-1] += i
         if proceed == 2:
-            
             if "정답:" in i:
                 print(i)
                 print(D[-1])
@@ -73,6 +72,7 @@ with open('q.txt', 'r', encoding='utf-8') as file:
                     H.append("")
                 proceed = 3
             else:
+                i = i.replace("최다 투표","")
                 if "A." in i:
                     D.append(i)
                 elif "B." in i:
@@ -91,9 +91,23 @@ with open('q.txt', 'r', encoding='utf-8') as file:
             if "정답:" in i:
                 proceed = 0
         
-                # temp = i.split(" : ")
-                # temp2 = temp.split()
+                ## 타입
+                if H[-1] == "":
+                    B.append("Multiple choice")
+                else:
+                    B.append("Checkbox")
                 
+                ## #Required at column
+                I.append("True")
+                ## #Add other at column
+                J.append("")
+
+                
+                #Correct answer at column
+                K.append("")
+                #Points at column
+                L.append("1")
+
                 M.append("")
                 N.append("")
                 O.append("")
@@ -107,10 +121,12 @@ print(len(E))
 print(len(F))
 print(len(G))
 print(len(H))
+
 print(len(I))
 print(len(J))
 print(len(K))
 print(len(L))
+
 print(len(M))
 print(len(N))
 print(len(O))
@@ -127,7 +143,12 @@ print(len(P))
 
 # print(contents)
 
-x = []
-y = []
-if len(x) == len(y):
-    print("ADSfasdfasd")
+
+
+
+f = open('write.csv', 'w', newline='', encoding='utf-8')
+wr = csv.writer(f)
+for i in range(len(A)):
+    wr.writerow([A[i], B[i], C[i], D[i], E[i], F[i], G[i], H[i], I[i], J[i], K[i], L[i], M[i], N[i], O[i], P[i]])
+ 
+f.close()
